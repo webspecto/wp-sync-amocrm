@@ -1,0 +1,115 @@
+body {
+    background-color: #f0f0f1;
+}
+
+.wrap h1 {
+    font-weight: 600;
+    padding: .5rem 0 0;
+    margin-bottom: 1.25rem;
+}
+
+.wrap .notice {
+    margin: 0 0 1rem;
+}
+
+h2 {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+form {
+    font-size: 14px;
+}
+
+.form-table {
+    margin: 1.25rem 0 1rem 0;
+}
+
+.form-table th {
+    font-weight: 500;
+    vertical-align: middle;
+    padding: 0 10px .75rem 0;
+}
+
+.form-table td {
+    margin-bottom: 0;
+    padding: 0 0 .75rem 10px;
+}
+
+.form-table tr:last-child th,
+.form-table tr:last-child td {
+    padding-bottom: 0;
+}
+
+p.submit {
+    margin: 0 0 1.25rem;
+    padding: 0;
+}
+
+hr {
+    margin-top: 0;
+}
+
+.wp-core-ui .button-primary,
+.wp-core-ui .button-secondary {
+    font-size: 14px;
+    line-height: 2;
+}
+
+.tabs {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    background-color: #fff;
+    border: 1px solid #c3c4c7;
+}
+
+.tab-link {
+    font-size: 14px;
+    margin: 0;
+    padding: 7px .75rem;
+    border-right: 1px solid #c3c4c7;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.tab-link:hover {
+    background-color: #FBFCFC;
+}
+
+.tab-link.active {
+    background-color: #F0F6FC;
+    border-bottom: 3px solid #72aee6;
+}
+
+.tab-content {
+    display: none;
+    padding: 1rem .75rem;
+    background-color: #fff;
+    border: 1px solid #c3c4c7;
+    border-top: none;
+}
+
+.tab-content.active-tab {
+    display: block;
+}
+
+@media screen and (max-width: 782px) {
+    .form-table th {
+        padding-right: 0;
+    }
+
+    .form-table td {
+        padding-left: 0;
+    }
+
+    .wp-core-ui .button {
+        margin-bottom: 0;
+    }
+
+    .tab-link {
+        padding: 11px .75rem;
+    }
+}
