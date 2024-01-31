@@ -4,8 +4,8 @@ body {
 
 .wrap h1 {
     font-weight: 600;
-    padding: .5rem 0 0;
     margin-bottom: 1.25rem;
+    padding: .5rem 0 0;
 }
 
 .wrap .notice {
@@ -28,8 +28,8 @@ form {
 
 .form-table th {
     font-weight: 500;
-    vertical-align: middle;
     padding: 0 10px .75rem 0;
+    vertical-align: middle;
 }
 
 .form-table td {
@@ -58,20 +58,20 @@ hr {
 }
 
 .tabs {
-    padding: 0;
-    margin: 0;
-    display: flex;
     background-color: #fff;
     border: 1px solid #c3c4c7;
+    display: flex;
+    margin: 0;
+    padding: 0;
 }
 
 .tab-link {
+    border-bottom: 3px solid transparent;
+    border-right: 1px solid #c3c4c7;
+    cursor: pointer;
     font-size: 14px;
     margin: 0;
     padding: 7px .75rem;
-    border-right: 1px solid #c3c4c7;
-    border-bottom: 3px solid transparent;
-    cursor: pointer;
     transition: 0.25s;
 }
 
@@ -85,15 +85,23 @@ hr {
 }
 
 .tab-content {
-    display: none;
-    padding: 1rem .75rem;
     background-color: #fff;
     border: 1px solid #c3c4c7;
     border-top: none;
+    display: none;
+    padding: 1rem .75rem;
 }
 
 .tab-content.active-tab {
     display: block;
+}
+
+.contain-custom__text {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+    justify-content: end;
+    width: 25em;
 }
 
 @media screen and (max-width: 782px) {
@@ -111,5 +119,9 @@ hr {
 
     .tab-link {
         padding: 11px .75rem;
+    }
+
+    .contain-custom__text {
+        width: 100%;
     }
 }

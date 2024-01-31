@@ -1,2 +1,4 @@
+# ignore
 vendor
 composer.lock
+helper.txt

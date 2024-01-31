@@ -2,7 +2,7 @@
 
 /**
  * @author Iulian Ceapa <dev@webspecto.com>
- * @copyright © 2023 WebSpecto.
+ * @copyright © 2023-2024 WebSpecto.
  */
 
 use AmoCRM\Client\AmoCRMApiClient;
@@ -163,8 +163,9 @@ class WP_Sync_AmoCRM_WPCF7
 
             $notes = new NotesCollection();
 
-            $common_note = new CommonNote();
             $lead_text = isset($_POST[$forms_option[$form_id]['text']]) ? esc_attr($_POST[$forms_option[$form_id]['text']]) : '';
+
+            $common_note = new CommonNote();
             $common_note->setEntityId($lead->getId())
                 ->setText($lead_text)
                 ->setCreatedBy(esc_attr($forms_option[$form_id]['user_responsible']));

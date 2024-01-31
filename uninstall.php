@@ -2,7 +2,7 @@
 
 /**
  * @author Iulian Ceapa <dev@webspecto.com>
- * @copyright © 2023 WebSpecto.
+ * @copyright © 2023-2024 WebSpecto.
  */
 
 defined('WP_UNINSTALL_PLUGIN') or die('Access denied');

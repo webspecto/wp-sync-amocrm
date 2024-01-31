@@ -2,16 +2,16 @@
 
 /**
  * @author            Iulian Ceapa <dev@webspecto.com>
- * @copyright         © 2023 WebSpecto.
+ * @copyright         © 2023-2024 WebSpecto.
  * @license           GPL-2.0-or-later
  * @link              https://www.webspecto.com/plugins/wp-sync-amocrm
- * @version           0.4.1
+ * @version           0.5
  * 
  * @wordpress-plugin
  * Plugin Name:       AmoCRM | Kommo Integration
  * Plugin URI:        https://www.webspecto.com/plugins/wp-sync-amocrm
  * Description:       Connects WordPress with AmoCRM | Kommo for data synchronization.
- * Version:           0.4.1
+ * Version:           0.5
  * Requires at least: 6.1
  * Requires PHP:      7.1
  * Author:            Iulian Ceapa

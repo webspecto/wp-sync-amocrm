@@ -2,7 +2,7 @@
 
 /**
  * @author Iulian Ceapa <dev@webspecto.com>
- * @copyright © 2023 WebSpecto.
+ * @copyright © 2023-2024 WebSpecto.
  */
 
 use Symfony\Component\Dotenv\Dotenv;
@@ -277,6 +277,8 @@ class WP_Sync_AmoCRM_Admin
                         echo '<option value="' . esc_attr($tag) . '">' . esc_html($tag) . '</option>';
                     }
                     echo '</select></td></tr>';
+
+                    echo '<tr><td></td><td><div class="contain-custom__text"><button class="button button-secondary add-field" disabled>Add custom field<span style="display:block;font-size:12px;margin-top:-8px">(Available in the pro version)</span></button></div></td></tr>';
 
                     echo '<tbody></table><p class="mb-0"><input type="submit" name="submit" class="button button-primary" value="Save changes" /></p></form>';
                 }
