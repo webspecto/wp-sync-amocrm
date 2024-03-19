@@ -5,15 +5,15 @@
  * @copyright         © 2023-2024 WebSpecto.
  * @license           GPL-2.0-or-later
  * @link              https://www.webspecto.com/plugins/wp-sync-amocrm
- * @version           0.5
+ * @version           0.5.2
  * 
  * @wordpress-plugin
- * Plugin Name:       AmoCRM | Kommo Integration
+ * Plugin Name:       Connector CRM for WordPress
  * Plugin URI:        https://www.webspecto.com/plugins/wp-sync-amocrm
  * Description:       Connects WordPress with AmoCRM | Kommo for data synchronization.
- * Version:           0.5
+ * Version:           0.5.2
  * Requires at least: 6.1
- * Requires PHP:      7.1
+ * Requires PHP:      8.0
  * Author:            Iulian Ceapa
  * License:           GPLv2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html

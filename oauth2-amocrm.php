@@ -40,7 +40,18 @@ if (file_exists($file_auth = __DIR__ . '/secret/auth.env')) {
         }
     }
 
-    session_start();
+    $dir_sess = __DIR__ . '/admin/.sessions';
+    if (file_exists($dir_sess) === false) {
+        mkdir($dir_sess, 0777, true);
+    }
+    session_set_cookie_params([
+        'secure' => true,
+        'httponly' => true
+    ]);
+    session_start([
+        'save_path' => $dir_sess,
+        'name' => 'wpsyncamo'
+    ]);
 
     if (isset($_GET['referer'])) {
         $api_client->setAccountBaseDomain($_GET['referer']);
