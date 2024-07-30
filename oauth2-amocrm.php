@@ -9,7 +9,7 @@ use AmoCRM\Client\AmoCRMApiClient;
 use Symfony\Component\Dotenv\Dotenv;
 
 if (file_exists($file_auth = __DIR__ . '/secret/auth.env')) {
-    include __DIR__ . '/vendor/autoload.php';
+    require_once __DIR__ . '/vendor/autoload.php';
 
     define('FILE_AUTH_TOKEN', __DIR__ . '/secret/auth_token.json');
 

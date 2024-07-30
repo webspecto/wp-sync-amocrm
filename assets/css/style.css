@@ -61,17 +61,19 @@ hr {
     background-color: #fff;
     border: 1px solid #c3c4c7;
     display: flex;
+    flex-wrap: wrap;
+    gap: 1px;
     margin: 0;
     padding: 0;
 }
 
 .tab-link {
-    border-bottom: 3px solid transparent;
-    border-right: 1px solid #c3c4c7;
+    border: 1px solid #c3c4c7;
     cursor: pointer;
     font-size: 14px;
-    margin: 0;
-    padding: 7px .75rem;
+    margin: -1px;
+    padding: 7px .75rem 9px;
+    position: relative;
     transition: 0.25s;
 }
 
@@ -81,7 +83,7 @@ hr {
 
 .tab-link.active {
     background-color: #F0F6FC;
-    border-bottom: 3px solid #72aee6;
+    box-shadow: inset 0 -3px 0 #72aee6;
 }
 
 .tab-content {
@@ -118,7 +120,7 @@ hr {
     }
 
     .tab-link {
-        padding: 11px .75rem;
+        padding: 11px .75rem 13px;
     }
 
     .contain-custom__text {

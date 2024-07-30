@@ -71,7 +71,7 @@ class WP_Sync_AmoCRM_Admin
 
     public function wpsyncamo_section_connect_callback()
     {
-        echo 'Create a external integration in AmoCRM using the URL: <b>' . plugins_url('/wp-sync-amocrm/oauth2-amocrm.php') . '</b><br>';
+        echo 'Create a external integration in AmoCRM | Kommo using the URL: <b>' . plugins_url('/wp-sync-amocrm/oauth2-amocrm.php') . '</b><br>';
         echo 'Following the integration setup, you will receive confidential data that should be entered below:';
     }
 
@@ -106,7 +106,7 @@ class WP_Sync_AmoCRM_Admin
     public function wpsyncamo_render_admin_page()
     {
         if (!current_user_can('manage_options')) {
-            wp_die('<div class="wrap"><h1>AmoCRM Integration</h1><div class="notice notice-error"><p>Access is restricted due to the lack of administrative privileges for the module.</p></div></div>');
+            wp_die('<div class="wrap"><h1>AmoCRM | Kommo Integration</h1><div class="notice notice-error"><p>Access is restricted due to the lack of administrative privileges for the module.</p></div></div>');
         }
 
         $file_auth = file_exists(WPSYNCAMO_DIR_PLUGIN . 'secret/auth.env') ? true : false;
@@ -136,12 +136,13 @@ class WP_Sync_AmoCRM_Admin
                 $tabs = [
                     'wpcf7' => 'Contact form 7',
                     'woocommerce' => 'Woocommerce',
+                    'elementor' => 'Elementor Forms'
                 ];
 
                 echo '<ul class="tabs">';
                 foreach ($tabs as $key => $label) {
                     $class = ($current_tab == $key) ? 'active' : '';
-                    echo '<li class="tab-link ' . $class . '" data-tab="tab-' . $key . '">' . $label . '</li>';
+                    echo '<li class="tab-link ' . $class . '" data-tab="tab-' . $key . '">' . $label . ($key == 'elementor' ? '<span class="position-absolute top-0 start-100 badge rounded-pill" style="background-color:#dba617;transform:translate(calc(-100% - 10px),-50%);">pre-alpha</span>' : '') . '</li>';
                 }
                 echo '</ul>';
 
@@ -152,6 +153,8 @@ class WP_Sync_AmoCRM_Admin
                         $this->wpsyncamo_display_wpcf7();
                     } elseif ($key == 'woocommerce') {
                         $this->wpsyncamo_display_woocommerce();
+                    } elseif ($key == 'elementor') {
+                        $this->wpsyncamo_display_elementor();
                     }
                     echo '</div>';
                 }
@@ -181,7 +184,7 @@ class WP_Sync_AmoCRM_Admin
             !file_exists(WP_PLUGIN_DIR . 'contact-form-7/wp-contact-form-7.php') &&
             !is_plugin_active('contact-form-7/wp-contact-form-7.php')
         ) {
-            echo '<p>Please install and activate the Contact Form 7 plugin to access its features.</p>';
+            echo '<p style="margin-bottom:0">Please install and activate the Contact Form 7 plugin to access its features.</p>';
         } else {
             // Get list of active Contact Form 7 forms
             $active_forms = WPCF7_ContactForm::find();
@@ -283,14 +286,19 @@ class WP_Sync_AmoCRM_Admin
                     echo '<tbody></table><p class="mb-0"><input type="submit" name="submit" class="button button-primary" value="Save changes" /></p></form>';
                 }
             } else {
-                echo '<p>No active forms found.</p>';
+                echo '<p style="margin-bottom:0">No active forms found.</p>';
             }
         }
     }
 
     public function wpsyncamo_display_woocommerce()
     {
-        echo '<p style="font-size:14px;margin-bottom:0">The integration with WooCommerce is only available in the pro version of the module.<p>';
+        echo '<p style="margin-bottom:0">The integration with WooCommerce is only available in the pro version of the module.</p>';
+    }
+
+    public function wpsyncamo_display_elementor()
+    {
+        echo '<p style="margin-bottom:0">The integration with Elementor Forms is only available in the pro version of the module.</p>';
     }
 
     public function wpsyncamo_update_forms()
