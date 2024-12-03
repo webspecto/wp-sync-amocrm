@@ -23,6 +23,10 @@ The "Connector CRM for WordPress" module enables the synchronization of data sub
 
 == Changelog ==
 
+= v0.6.1-pre-alpha (12.09.2024) =
+
+1. Added support for WooCommerce comments (available in the pro version).
+
 = v0.6-pre-alpha (25.07.2024) =
 
 1. Added support for Elementor Pro Forms (for developers, available in the pro version).
