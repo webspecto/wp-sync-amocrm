@@ -1,10 +1,10 @@
 === Connector CRM for WordPress ===
 Contributors:      webspecto
 Donate link:       https://www.paypal.me/IulianCeapa
-Tags:              crm, amocrm, kommo, contact form 7, woocommerce, elementor pro
+Tags:              crm, amocrm, kommo, contact form 7, wpforms, woocommerce, elementor pro
 Requires at least: 6.1
-Tested up to:      6.4
-Stable tag:        0.5.2
+Tested up to:      6.7
+Stable tag:        0.7-beta
 Requires PHP:      8.0
 License:           GPLv2 or later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -22,6 +22,14 @@ The "Connector CRM for WordPress" module enables the synchronization of data sub
 3. Access the plugin settings page to configure synchronization.
 
 == Changelog ==
+
+= v0.7-beta (06.12.2024) =
+
+Important: This version is not compatible with previous versions. Before installing, the old version must be removed.
+
+1. Added support for WPForms.
+2. Pipelines and statuses from the CRM are now directly displayed within the form.
+3. Bug fixes.
 
 = v0.6.1-pre-alpha (12.09.2024) =
 

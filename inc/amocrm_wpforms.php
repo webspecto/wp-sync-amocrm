@@ -25,9 +25,9 @@ use Symfony\Component\Dotenv\Dotenv;
 
 defined('ABSPATH') or die('Access denied');
 
-class WP_Sync_AmoCRM_WPCF7
+class WP_Sync_AmoCRM_WPForms
 {
-    public function __construct($form_id)
+    public function __construct($form_id, $fields)
     {
         $file_auth = WPSYNCAMO_DIR_PLUGIN . 'secret/auth.env';
         $forms_option = get_option('wpsyncamo_forms');
@@ -35,7 +35,7 @@ class WP_Sync_AmoCRM_WPCF7
         if (
             !file_exists($file_auth) ||
             $forms_option === false ||
-            !isset($forms_option['wpcf7'][$form_id])
+            !isset($forms_option['wpforms'][$form_id])
         ) {
             return false;
         }
@@ -104,14 +104,14 @@ class WP_Sync_AmoCRM_WPCF7
 
             $contact = new ContactModel();
 
-            $lead_name = isset($_POST[$forms_option['wpcf7'][$form_id]['name']]) ? esc_attr($_POST[$forms_option['wpcf7'][$form_id]['name']]) : '';
+            $lead_name = isset($fields[$forms_option['wpforms'][$form_id]['name']]) ? esc_attr($fields[$forms_option['wpforms'][$form_id]['name']]) : '';
             $contact->setName($lead_name);
 
             $customFieldsValues = new CustomFieldsValuesCollection();
 
             $phone = new MultitextCustomFieldValuesModel();
             $phone->setFieldCode('PHONE');
-            $lead_phone = isset($_POST[$forms_option['wpcf7'][$form_id]['phone']]) ? esc_attr($_POST[$forms_option['wpcf7'][$form_id]['phone']]) : null;
+            $lead_phone = isset($fields[$forms_option['wpforms'][$form_id]['phone']]) ? esc_attr($fields[$forms_option['wpforms'][$form_id]['phone']]) : null;
             $phone->setValues(
                 (new MultitextCustomFieldValueCollection())
                     ->add(
@@ -123,7 +123,7 @@ class WP_Sync_AmoCRM_WPCF7
 
             $email = new MultitextCustomFieldValuesModel();
             $email->setFieldCode('EMAIL');
-            $lead_email = isset($_POST[$forms_option['wpcf7'][$form_id]['email']]) ? esc_attr($_POST[$forms_option['wpcf7'][$form_id]['email']]) : null;
+            $lead_email = isset($fields[$forms_option['wpforms'][$form_id]['email']]) ? esc_attr($fields[$forms_option['wpforms'][$form_id]['email']]) : null;
             $email->setValues(
                 (new MultitextCustomFieldValueCollection())
                     ->add(
@@ -141,13 +141,13 @@ class WP_Sync_AmoCRM_WPCF7
             $api_client->contacts()->addOne($contact);
 
             $lead = new LeadModel();
-            $lead->setPipelineId(esc_attr($forms_option['wpcf7'][$form_id]['pipeline']));
-            $lead->setStatusId(esc_attr($forms_option['wpcf7'][$form_id]['status']));
-            $lead->setResponsibleUserId(esc_attr($forms_option['wpcf7'][$form_id]['user_responsible']));
+            $lead->setPipelineId(esc_attr($forms_option['wpforms'][$form_id]['pipeline']));
+            $lead->setStatusId(esc_attr($forms_option['wpforms'][$form_id]['status']));
+            $lead->setResponsibleUserId(esc_attr($forms_option['wpforms'][$form_id]['user_responsible']));
             $lead->setName($lead_name);
 
             $tags = new TagsCollection();
-            foreach (explode(',', esc_attr($forms_option['wpcf7'][$form_id]['tags'])) as $name) {
+            foreach (explode(',', esc_attr($forms_option['wpforms'][$form_id]['tags'])) as $name) {
                 $tag = new TagModel();
                 $tag->setName($name);
                 $tags->add($tag);
@@ -163,21 +163,21 @@ class WP_Sync_AmoCRM_WPCF7
 
             $notes = new NotesCollection();
 
-            $lead_text = isset($_POST[$forms_option['wpcf7'][$form_id]['text']]) ? esc_attr($_POST[$forms_option['wpcf7'][$form_id]['text']]) : '';
+            $lead_text = isset($fields[$forms_option['wpforms'][$form_id]['text']]) ? esc_attr($fields[$forms_option['wpforms'][$form_id]['text']]) : '';
 
             $common_note = new CommonNote();
             $common_note->setEntityId($lead->getId())
                 ->setText($lead_text)
-                ->setCreatedBy(esc_attr($forms_option['wpcf7'][$form_id]['user_responsible']));
+                ->setCreatedBy(esc_attr($forms_option['wpforms'][$form_id]['user_responsible']));
 
             $notes->add($common_note);
 
             $notes_service = $api_client->notes(EntityTypesInterface::LEADS);
             $notes_service->add($notes);
         } catch (AmoCRMApiException $e) {
-            trigger_error($e . PHP_EOL . json_encode($_POST), E_USER_WARNING);
+            trigger_error($e . PHP_EOL . json_encode($fields), E_USER_WARNING);
         } catch (\Exception $e) {
-            trigger_error($e->getMessage() . PHP_EOL . json_encode($_POST), E_USER_WARNING);
+            trigger_error($e->getMessage() . PHP_EOL . json_encode($fields), E_USER_WARNING);
         }
     }
 }

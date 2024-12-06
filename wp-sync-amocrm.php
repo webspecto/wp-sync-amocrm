@@ -5,13 +5,13 @@
  * @copyright         © 2023-2024 WebSpecto.
  * @license           GPL-2.0-or-later
  * @link              https://www.webspecto.com/plugins/wp-sync-amocrm
- * @version           0.6.1-pre-alpha
+ * @version           0.7-beta
  * 
  * @wordpress-plugin
  * Plugin Name:       Connector CRM for WordPress
  * Plugin URI:        https://www.webspecto.com/plugins/wp-sync-amocrm
  * Description:       Connects WordPress with AmoCRM | Kommo for data synchronization.
- * Version:           0.6.1-pre-alpha
+ * Version:           0.7-beta
  * Requires at least: 6.1
  * Requires PHP:      8.0
  * Author:            Iulian Ceapa
@@ -51,5 +51,13 @@ if (is_admin()) {
     {
         require_once WPSYNCAMO_DIR_PLUGIN . 'inc/amocrm_wpcf7.php';
         new WP_Sync_AmoCRM_WPCF7($contact_form->id());
+    }
+
+    add_action('wpforms_process_complete', 'wpsyncamo_wpforms', 10, 4);
+
+    function wpsyncamo_wpforms($fields, $entry, $form_data, $entry_id)
+    {
+        require_once WPSYNCAMO_DIR_PLUGIN . 'inc/amocrm_wpforms.php';
+        new WP_Sync_AmoCRM_WPForms($form_data['id'], $entry['fields']);
     }
 }
