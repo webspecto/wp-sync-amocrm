@@ -163,7 +163,7 @@ class WP_Sync_AmoCRM_WPCF7
 
             $notes = new NotesCollection();
 
-            $lead_text = isset($_POST[$forms_option['wpcf7'][$form_id]['text']]) ? esc_attr($_POST[$forms_option['wpcf7'][$form_id]['text']]) : '';
+            $lead_text = isset($_POST[$forms_option['wpcf7'][$form_id]['text']]) ? esc_attr($_POST[$forms_option['wpcf7'][$form_id]['text']]) : ' ';
 
             $common_note = new CommonNote();
             $common_note->setEntityId($lead->getId())

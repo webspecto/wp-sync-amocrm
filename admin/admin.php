@@ -284,7 +284,6 @@ class WP_Sync_AmoCRM_Admin
                     }
                     echo '</select></td></tr>';
 
-
                     $crm_tags = isset($forms_option['wpcf7'][$selected_form_id]['tags']) ? esc_attr($forms_option['wpcf7'][$selected_form_id]['tags']) : '#site, #contactform';
                     echo '<tr><th scope="row">Tags<p style="margin-bottom:0;font-weight:normal;">If you need to specify multiple tags, use a comma.</p></th><td><input type="text" name="wpsyncamo_forms[wpcf7][tags]" value="' . $crm_tags . '" class="regular-text code" /></td></tr>';
 

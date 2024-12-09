@@ -163,7 +163,7 @@ class WP_Sync_AmoCRM_WPForms
 
             $notes = new NotesCollection();
 
-            $lead_text = isset($fields[$forms_option['wpforms'][$form_id]['text']]) ? esc_attr($fields[$forms_option['wpforms'][$form_id]['text']]) : '';
+            $lead_text = isset($fields[$forms_option['wpforms'][$form_id]['text']]) ? esc_attr($fields[$forms_option['wpforms'][$form_id]['text']]) : ' ';
 
             $common_note = new CommonNote();
             $common_note->setEntityId($lead->getId())
