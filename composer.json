@@ -1,6 +1,6 @@
 {
     "require": {
         "php": ">=8.0",
-        "amocrm/amocrm-api-library": "^1.6"
+        "amocrm/amocrm-api-library": "^1.10"
     }
 }
