@@ -78,8 +78,14 @@ class WP_Sync_AmoCRM_Admin
 
     public function wpsyncamo_section_connect_callback()
     {
-        echo 'Create a external integration in AmoCRM | Kommo using the URL: <b>' . plugins_url('/wp-sync-amocrm/oauth2-amocrm.php') . '</b><br>';
-        echo 'Following the integration setup, you will receive confidential data that should be entered below:';
+        echo '<div class="integration-info">
+            <p><b>Create a external integration in AmoCRM | Kommo using the URL:</b></p>
+            <div class="external-url">
+                <input type="text" class="regular-text code" value="' . plugins_url('/wp-sync-amocrm/oauth2-amocrm.php') . '" />
+                <button type="button" class="button button-secondary" data-url="' . plugins_url('/wp-sync-amocrm/oauth2-amocrm.php') . '" onclick="navigator.clipboard.writeText(this.getAttribute(\'data-url\')).then(()=>{this.textContent=\'Copied!\';setTimeout(()=>this.textContent=\'Copy\',1500);});" />Copy</button>
+            </div>
+            <p>Following the integration setup, you will receive confidential data that should be entered below:</p>
+        </div>';
     }
 
     public function wpsyncamo_client_base_domain_callback()
@@ -196,7 +202,10 @@ class WP_Sync_AmoCRM_Admin
 
         echo '<form method="post" action="">
                 <input type="hidden" name="wpsyncamo_revoke_authorization" value="1" />
-                <p class="submit"><input type="submit" class="button button-secondary" style="color:#b32d2e;border-color:#b32d2e;" value="Revoke Authorization" onclick="return confirm(\'Are you sure you want to delete the settings and token data?\');" /></p>
+                <p class="submit">
+                    <a href="' . plugins_url('/wp-sync-amocrm/oauth2-amocrm.php') . '" class="button button-secondary">Reauthorize</a>
+                    <input type="submit" class="button button-secondary" style="color:#b32d2e;border-color:#b32d2e;" value="Revoke Authorization" onclick="return confirm(\'Are you sure you want to delete the settings and token data?\');" />
+                </p>
             </form><hr>';
     }
 

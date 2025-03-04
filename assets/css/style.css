@@ -18,6 +18,20 @@ h2 {
     margin-bottom: 1rem;
 }
 
+.integration-info p {
+    margin: 0;
+}
+
+.integration-info p b {
+    font-weight: 500;
+}
+
+.integration-info .external-url {
+    display: flex;
+    gap: 6px;
+    margin: 8px 0;
+}
+
 form {
     font-size: 14px;
 }
@@ -43,6 +57,9 @@ form {
 }
 
 p.submit {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
     margin: 0 0 1.25rem;
     padding: 0;
 }
@@ -113,6 +130,10 @@ hr {
 
     .form-table td {
         padding-left: 0;
+    }
+
+    p.submit a {
+        line-height: 2.71428571 !important;
     }
 
     .wp-core-ui .button {

@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.8 (04.03.2025)
+
+- Added Reauthorize button.
+- Added Copy button for external URL.
+- Dependencies update.
+
 ## v0.7.2-beta (29.01.2025)
 
 - Dependencies update.
