@@ -2,7 +2,7 @@
 
 /**
  * @author Iulian Ceapa <dev@webspecto.com>
- * @copyright © 2023-2025 WebSpecto.
+ * @copyright © 2023-2026 WebSpecto.
  */
 
 use AmoCRM\Client\AmoCRMApiClient;
@@ -163,29 +163,35 @@ class WP_Sync_AmoCRM_Admin
                     if (array_key_exists($tabs_keys[0], $tabs)) {
                         $current_tab = $tabs_keys[0];
                     }
+                } elseif (isset($_GET['tab'])) {
+                    $tab = sanitize_key($_GET['tab']);
+
+                    if (array_key_exists($tab, $tabs)) {
+                        $current_tab = $tab;
+                    }
                 }
 
                 echo '<ul class="tabs">';
                 foreach ($tabs as $key => $label) {
                     $class = ($current_tab == $key) ? 'active' : '';
-                    echo '<li class="tab-link ' . $class . '" data-tab="tab-' . $key . '">' . $label . ($key == 'elementor' ? '<span class="position-absolute top-0 start-100 badge rounded-pill" style="background-color:#dba617;transform:translate(calc(-100% - 10px),-50%);">pre-alpha</span>' : '') . '</li>';
+                    echo '<li class="tab-link ' . $class . '"><a href="' . admin_url('admin.php?page=wpsyncamo&tab=' . $key) . '">' . $label . ($key == 'elementor' ? '<span class="position-absolute top-0 start-100 badge rounded-pill" style="background-color:#dba617;transform:translate(calc(-100% - 10px),-50%);">pre-alpha</span>' : '') . '</a></li>';
                 }
                 echo '</ul>';
 
-                foreach ($tabs as $key => $label) {
-                    $class = ($current_tab == $key) ? 'active-tab' : '';
-                    echo '<div id="tab-' . $key . '" class="tab-content ' . $class . '">';
-                    if ($key == 'wpcf7') {
-                        $this->wpsyncamo_display_wpcf7();
-                    } elseif ($key == 'wpforms') {
-                        $this->wpsyncamo_display_wpforms();
-                    } elseif ($key == 'woocommerce') {
-                        $this->wpsyncamo_display_woocommerce();
-                    } elseif ($key == 'elementor') {
-                        $this->wpsyncamo_display_elementor();
-                    }
-                    echo '</div>';
+                echo '<div id="tab-' . $current_tab . '" class="tab-content">';
+
+                $tabs_actions = [
+                    'wpcf7' => 'wpsyncamo_display_wpcf7',
+                    'wpforms' => 'wpsyncamo_display_wpforms',
+                    'woocommerce' => 'wpsyncamo_display_woocommerce',
+                    'elementor' => 'wpsyncamo_display_elementor'
+                ];
+
+                if (isset($tabs_actions[$current_tab])) {
+                    $this->{$tabs_actions[$current_tab]}();
                 }
+
+                echo '</div>';
             }
         }
 
@@ -344,9 +350,13 @@ class WP_Sync_AmoCRM_Admin
                     }
                     echo '</select></td></tr>';
 
-                    echo '<tr><td></td><td><div class="contain-custom__text"><button class="button button-secondary add-field" disabled>Add custom field<span style="display:block;font-size:12px;margin-top:-8px">(Available in the pro version)</span></button></div></td></tr>';
+                    echo '<tr><td></td><td><div class="contain-custom__text"><button class="button button-secondary add-field" disabled>Add custom comment<span style="display:block;font-size:12px;margin-top:-8px">(Available in the pro version)</span></button></div></td></tr>';
+                    echo '</tbody></table>';
 
-                    echo '<tbody></table><p class="mb-0"><input type="submit" name="submit" class="button button-primary" value="Save changes" /></p></form>';
+                    echo '<table class="form-table custom-fields" style="margin-top:0;" role="presentation"><tbody>';
+                    echo '<tr><th scope="row">Lead custom fields</th><td></td></tr>';
+                    echo '<tr><td colspan="2"><div class="contain-custom__fields"><button class="button button-secondary add-field" disabled>Add custom field<span style="display:block;font-size:12px;margin-top:-8px">(Available in the pro version)</span></button></div></td></tr>';
+                    echo '</tbody></table><p class="mb-0"><input type="submit" name="submit" class="button button-primary" value="Save changes" /></p></form>';
                 }
             } else {
                 echo '<p style="margin-bottom:0">No active forms found.</p>';
@@ -492,7 +502,7 @@ class WP_Sync_AmoCRM_Admin
 
                     echo '<tr><td></td><td><div class="contain-custom__text"><button class="button button-secondary add-field" disabled>Add custom field<span style="display:block;font-size:12px;margin-top:-8px">(Available in the pro version)</span></button></div></td></tr>';
 
-                    echo '<tbody></table><p class="mb-0"><input type="submit" name="submit" class="button button-primary" value="Save changes" /></p></form>';
+                    echo '</tbody></table><p class="mb-0"><input type="submit" name="submit" class="button button-primary" value="Save changes" /></p></form>';
                 }
             } else {
                 echo '<p style="margin-bottom:0">No active forms found.</p>';

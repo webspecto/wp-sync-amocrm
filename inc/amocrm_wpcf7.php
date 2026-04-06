@@ -2,7 +2,7 @@
 
 /**
  * @author Iulian Ceapa <dev@webspecto.com>
- * @copyright © 2023-2025 WebSpecto.
+ * @copyright © 2023-2026 WebSpecto.
  */
 
 use AmoCRM\Client\AmoCRMApiClient;
@@ -104,14 +104,14 @@ class WP_Sync_AmoCRM_WPCF7
 
             $contact = new ContactModel();
 
-            $lead_name = isset($_POST[$forms_option['wpcf7'][$form_id]['name']]) ? esc_attr($_POST[$forms_option['wpcf7'][$form_id]['name']]) : '';
+            $lead_name = isset($_POST[$forms_option['wpcf7'][$form_id]['name']]) ? sanitize_text_field($_POST[$forms_option['wpcf7'][$form_id]['name']]) : '';
             $contact->setName($lead_name);
 
             $customFieldsValues = new CustomFieldsValuesCollection();
 
             $phone = new MultitextCustomFieldValuesModel();
             $phone->setFieldCode('PHONE');
-            $lead_phone = isset($_POST[$forms_option['wpcf7'][$form_id]['phone']]) ? esc_attr($_POST[$forms_option['wpcf7'][$form_id]['phone']]) : null;
+            $lead_phone = isset($_POST[$forms_option['wpcf7'][$form_id]['phone']]) ? sanitize_text_field($_POST[$forms_option['wpcf7'][$form_id]['phone']]) : null;
             $phone->setValues(
                 (new MultitextCustomFieldValueCollection())
                     ->add(
@@ -123,7 +123,7 @@ class WP_Sync_AmoCRM_WPCF7
 
             $email = new MultitextCustomFieldValuesModel();
             $email->setFieldCode('EMAIL');
-            $lead_email = isset($_POST[$forms_option['wpcf7'][$form_id]['email']]) ? esc_attr($_POST[$forms_option['wpcf7'][$form_id]['email']]) : null;
+            $lead_email = isset($_POST[$forms_option['wpcf7'][$form_id]['email']]) ? sanitize_email($_POST[$forms_option['wpcf7'][$form_id]['email']]) : null;
             $email->setValues(
                 (new MultitextCustomFieldValueCollection())
                     ->add(
@@ -147,7 +147,7 @@ class WP_Sync_AmoCRM_WPCF7
             $lead->setName($lead_name);
 
             $tags = new TagsCollection();
-            foreach (explode(',', esc_attr($forms_option['wpcf7'][$form_id]['tags'])) as $name) {
+            foreach (explode(',', sanitize_text_field($forms_option['wpcf7'][$form_id]['tags'])) as $name) {
                 $tag = new TagModel();
                 $tag->setName($name);
                 $tags->add($tag);
@@ -163,7 +163,7 @@ class WP_Sync_AmoCRM_WPCF7
 
             $notes = new NotesCollection();
 
-            $lead_text = isset($_POST[$forms_option['wpcf7'][$form_id]['text']]) ? esc_attr($_POST[$forms_option['wpcf7'][$form_id]['text']]) : ' ';
+            $lead_text = isset($_POST[$forms_option['wpcf7'][$form_id]['text']]) ? sanitize_text_field($_POST[$forms_option['wpcf7'][$form_id]['text']]) : ' ';
 
             $common_note = new CommonNote();
             $common_note->setEntityId($lead->getId())

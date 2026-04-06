@@ -51,9 +51,26 @@ form {
     padding: 0 0 .75rem 10px;
 }
 
-.form-table tr:last-child th,
-.form-table tr:last-child td {
+.form-table:not(.custom-fields) tr:last-child th,
+.form-table:not(.custom-fields) tr:last-child td {
     padding-bottom: 0;
+}
+
+.form-table.custom-fields {
+    border: 1px solid #c3c4c7;
+}
+
+.form-table.custom-fields th {
+    padding-left: .75rem;
+}
+
+.form-table.custom-fields td {
+    padding-right: .75rem;
+}
+
+.form-table.custom-fields tr:first-child th,
+.form-table.custom-fields tr:first-child td {
+    padding-top: .75rem;
 }
 
 p.submit {
@@ -78,24 +95,35 @@ hr {
     background-color: #fff;
     border: 1px solid #c3c4c7;
     display: flex;
-    flex-wrap: wrap;
     gap: 1px;
     margin: 0;
     padding: 0;
 }
 
 .tab-link {
-    border: 1px solid #c3c4c7;
-    cursor: pointer;
-    font-size: 14px;
-    margin: -1px;
-    padding: 7px .75rem 9px;
-    position: relative;
-    transition: 0.25s;
+    margin: 0;
 }
 
-.tab-link:hover {
+.tab-link a {
+    border-right: 1px solid #c3c4c7;
+    color: inherit;
+    display: block;
+    font-size: 14px;
+    margin-right: -1px;
+    padding: 7px .75rem 9px;
+    position: relative;
+    text-decoration: none;
+    transition: 0.25s;
+    white-space: nowrap;
+}
+
+.tab-link a:hover {
     background-color: #FBFCFC;
+}
+
+.tab-link a:focus {
+    box-shadow: unset;
+    transition: unset;
 }
 
 .tab-link.active {
@@ -107,29 +135,37 @@ hr {
     background-color: #fff;
     border: 1px solid #c3c4c7;
     border-top: none;
-    display: none;
     padding: 1rem .75rem;
 }
 
-.tab-content.active-tab {
-    display: block;
-}
-
-.contain-custom__text {
+.contain-custom__text,
+.contain-custom__fields {
     display: flex;
     flex-wrap: wrap;
     gap: .75rem;
-    justify-content: end;
     width: 25em;
 }
 
+.contain-custom__fields {
+    padding-left: 2px;
+    width: calc(25em + 200px);
+}
+
 @media screen and (max-width: 782px) {
-    .form-table th {
+    .form-table:not(.custom-fields) th {
         padding-right: 0;
     }
 
-    .form-table td {
+    .form-table:not(.custom-fields) td {
         padding-left: 0;
+    }
+
+    .form-table.custom-fields tr:first-child th {
+        padding-right: 12px;
+    }
+
+    .form-table.custom-fields tr:first-child td {
+        padding: 0;
     }
 
     p.submit a {
@@ -140,11 +176,21 @@ hr {
         margin-bottom: 0;
     }
 
-    .tab-link {
-        padding: 11px .75rem 13px;
+    .tabs {
+        overflow-x: auto;
     }
 
-    .contain-custom__text {
+    /* For version */
+    .tab-link a span {
+        left: auto !important;
+        margin-left: 4px;
+        position: relative !important;
+        top: -1px !important;
+        transform: none !important;
+    }
+
+    .contain-custom__text,
+    .contain-custom__fields {
         width: 100%;
     }
 }
