@@ -4,7 +4,7 @@ Donate link:       https://www.paypal.me/IulianCeapa
 Tags:              crm, amocrm, kommo, contact form 7, wpforms, woocommerce, elementor pro
 Requires at least: 6.1
 Tested up to:      6.9
-Stable tag:        0.9
+Stable tag:        0.10
 Requires PHP:      8.0
 License:           GPLv2 or later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -22,6 +22,10 @@ The "Connector CRM for WordPress" module enables the synchronization of data sub
 3. Access the plugin settings page to configure synchronization
 
 == Changelog ==
+
+= v0.10 (10.04.2026) =
+
+1. Added support for UTM parameters in WooCommerce custom fields (available in the pro version)
 
 = v0.9 (06.04.2026) =
 

@@ -1,5 +1,11 @@
 # Changelog
 
+## [v0.10] - 2026-04-10
+
+### Added
+
+- Support for UTM parameters in WooCommerce custom fields (available in the pro version)
+
 ## [v0.9] - 2026-04-06
 
 ### Added
